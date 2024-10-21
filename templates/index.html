@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Matcher</title>
+</head>
+<body>
+    <h1>Regex Matcher</h1>
+    <form action="/results" method="post">
+        <label for="test_string">Test String:</label><br>
+        <textarea name="test_string" id="test_string" rows="4" cols="50">{{ test_string }}</textarea><br><br>
+
+        <label for="regex">Regex Pattern:</label><br>
+        <input type="text" name="regex" id="regex" value="{{ regex }}"><br><br>
+
+        <input type="submit" value="Find Matches">
+    </form>
+
+    {% if matches is not none %}
+        <h2>Matches Found:</h2>
+        <ul>
+            {% for match in matches %}
+                <li>{{ match }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <hr>  <!-- Adding a horizontal line for separation -->
+
+    <h2>Email Validator</h2>
+    <form action="/validate_email" method="post">
+        <label for="email">Email Address:</label><br>
+        <input type="text" name="email" id="email" value="{{ email }}"><br><br>
+        <input type="submit" value="Validate Email">
+    </form>
+
+    {% if is_valid is not none %}
+        <h3>Email is {{ 'valid' if is_valid else 'invalid' }}</h3>
+    {% endif %}
+</body>
+</html>
